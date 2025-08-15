@@ -7,6 +7,7 @@ This is a modern React-based corporate website for Rockam Data Services Ltd, a d
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
+Request: Deploy website to Vercel or Netlify instead of Replit hosting.
 
 ## System Architecture
 
@@ -72,3 +73,36 @@ Preferred communication style: Simple, everyday language.
 - **connect-pg-simple**: PostgreSQL session store (prepared for session management)
 - **date-fns**: Date utility library for formatting and manipulation
 - **react-icons**: Icon library providing social media and general purpose icons
+
+## Deployment Configuration (August 15, 2025)
+
+### Platform Support
+The website is now configured for deployment on both Vercel and Netlify with the following changes:
+
+### Vercel Configuration
+- **vercel.json**: Configures serverless functions, routing, and build settings
+- **API Functions**: Contact form endpoint moved to `/api/contact.ts` for Vercel serverless functions
+- **Build Command**: `vite build` to generate static frontend
+- **Output Directory**: `dist/public` for compiled assets
+
+### Netlify Configuration  
+- **netlify.toml**: Configures Netlify Functions, redirects, and build settings
+- **Netlify Functions**: Contact form endpoint in `/netlify/functions/api.ts`
+- **Build Command**: `vite build` for static site generation
+- **Function Directory**: `netlify/functions` for serverless functions
+
+### Dependencies Added
+- **@vercel/node**: Vercel serverless function runtime support
+- **@netlify/functions**: Netlify serverless function runtime support
+
+### API Adaptations
+- Contact form API adapted for serverless function architecture
+- Maintained same validation and response structure
+- In-memory storage for demo (production should use external database)
+- CORS headers configured for cross-origin requests
+
+### Build Process
+- Frontend builds to `dist/public` directory
+- Static assets served from build output
+- API functions deployed separately as serverless functions
+- Single Page Application routing handled via configuration files
